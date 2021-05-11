@@ -11,7 +11,7 @@ def get_password(length):
     return ''.join((secrets.choice(string.ascii_letters) for i in range(length)))
 
 
-@pytest.mark.django_db
+@pytest.mark.django_db()
 def test_create_user():
     User = get_user_model()
     password = get_password(8)
@@ -34,7 +34,7 @@ def test_create_user():
         User.objects.create_user(email='', first_name="User", last_name="Userson", password=password)
 
 
-@pytest.mark.django_db
+@pytest.mark.django_db()
 def test_create_superuser():
     User = get_user_model()
     password = get_password(8)
@@ -55,7 +55,7 @@ def test_create_superuser():
             email='super@user.com', password=password, is_superuser=False)
 
 
-@pytest.mark.django_db
+@pytest.mark.django_db()
 def test_user_full_name_with_middle_name():
     User = get_user_model()
     first_name = "User"
@@ -72,7 +72,7 @@ def test_user_full_name_with_middle_name():
     assert user.get_full_name() == "User Userson Useroff"
 
 
-@pytest.mark.django_db
+@pytest.mark.django_db()
 def test_user_full_name():
     User = get_user_model()
     first_name = "User"
@@ -87,7 +87,7 @@ def test_user_full_name():
     assert user.get_full_name() == "User Useroff"
 
 
-@pytest.mark.django_db
+@pytest.mark.django_db()
 def test_user_short_name():
     User = get_user_model()
     first_name = "User"

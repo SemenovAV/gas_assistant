@@ -21,6 +21,8 @@ repos:
       args: [
             "--max-line-length=130",
             "--per-file-ignores=*/tests*.py:S101",
-            "--exclude=manage.py"
+            "--exclude=
+              manage.py,
+              */migrations/*"
           # S101 Use of assert detected
         ]
