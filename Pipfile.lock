@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c53a0ac06a153d6605deca7173e6bf7cc9cd2c7db73a756eb7a3f995dca0ebdc"
+            "sha256": "be73abdb9a0fcf135ade21153f7f25241adbe2075d43d64d7b4b6692b1ba7e30"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -140,6 +140,14 @@
             ],
             "index": "pypi",
             "version": "==1.36.1"
+        },
+        "gunicorn": {
+            "hashes": [
+                "sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e",
+                "sha256:e0a968b5ba15f8a328fdfd7ab1fcb5af4470c28aaf7e55df02a99bc13138e6e8"
+            ],
+            "index": "pypi",
+            "version": "==20.1.0"
         },
         "idna": {
             "hashes": [
@@ -538,11 +546,11 @@
         },
         "flake8-django": {
             "hashes": [
-                "sha256:c71da0e61b6119dae91cbffdbdb00f1d6ebe3f5d0c43f5bf136929997ab0b72d",
-                "sha256:fb4e8f669d3cf44297bb6e1c5d0a358ab0aba373cd4c69268cf2798de6bcbd9b"
+                "sha256:b4314abb5bacda450d2eae564a0604447111b1b98188e46bca41682ad2ab59d6",
+                "sha256:f8bfdbe8352c2c5f3788c2a2f6652dd2604af24af07a5aa112206d63ae228fdc"
             ],
             "index": "pypi",
-            "version": "==1.1.1"
+            "version": "==1.1.2"
         },
         "flake8-eradicate": {
             "hashes": [
