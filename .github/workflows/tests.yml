@@ -45,7 +45,7 @@ jobs:
         pipenv run pre-commit install --hook-type commit-msg
 
     - name: migrate
-      run: pipenv run python src/manage.py migrate
+      run: pipenv run python manage.py migrate
 
     - name: lint
       run: pipenv run pre-commit run flake8 -a
