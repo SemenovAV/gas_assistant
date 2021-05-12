@@ -1,6 +1,6 @@
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.0.6"
+version = "0.0.7"
 tag_format = "v$minor.$major.$patch$prerelease"
 
 [tool.coverage.run]
