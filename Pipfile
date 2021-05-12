@@ -4,12 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [scripts]
-manage = "cd ./src && python manage.py"
+manage = "python manage.py"
 init = "pre-commit install --hook-type commit-msg"
 lint = "pre-commit run -a"
-fix = "black --line-length=130 --target-version=py38 --verbose ./src"
-tests = "coverage run --source='./src' -m pytest --suppress-no-test-exit-code"
-serve = "python ./src/manage.py runserver"
+tests = "coverage run -m pytest --suppress-no-test-exit-code"
+serve = "python manage.py runserver"
 
 [packages]
 django = "*"
@@ -36,12 +35,12 @@ six = "==1.15.0"
 sqlparse = "==0.4.1"
 urllib3 = "==1.26.4"
 gunicorn = "*"
+pillow = "*"
 
 [dev-packages]
 ipython = "*"
 commitizen = "*"
 pre-commit = "*"
-black = "*"
 flake8 = "*"
 flake8-bandit = "*"
 flake8-broken-line = "*"

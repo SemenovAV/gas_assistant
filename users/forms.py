@@ -8,15 +8,16 @@ from django.utils.translation import gettext_lazy as _
 class UserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
     fields, plus a repeated password."""
-    password1 = forms.CharField(label=_('Password'), widget=forms.PasswordInput)
-    password2 = forms.CharField(label=_('Password confirmation'), widget=forms.PasswordInput)
-    first_name = forms.CharField(label=_('First name'))
-    middle_name = forms.CharField(label=_('Middle name'))
-    last_name = forms.CharField(label=_('Last name'))
+
+    password1 = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
+    password2 = forms.CharField(label=_("Password confirmation"), widget=forms.PasswordInput)
+    first_name = forms.CharField(label=_("First name"))
+    middle_name = forms.CharField(label=_("Middle name"))
+    last_name = forms.CharField(label=_("Last name"))
 
     class Meta:
         model = User
-        fields = ('email',)
+        fields = ("email",)
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -40,11 +41,12 @@ class UserChangeForm(forms.ModelForm):
     the user, but replaces the password field with admin's
     password hash display field.
     """
+
     password = ReadOnlyPasswordHashField()
 
     class Meta:
         model = User
-        fields = ('email', 'password', 'is_active', 'is_staff')
+        fields = ("email", "password", "is_active", "is_staff")
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.

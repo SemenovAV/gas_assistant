@@ -5,7 +5,7 @@ tag_format = "v$minor.$major.$patch$prerelease"
 
 [tool.coverage.run]
 branch = true
-source = ["./src"]
+source = ["./users"]
 omit = ["*/manage.py", "*/tests/*"]
 
 [tool.pytest.ini_options]

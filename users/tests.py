@@ -8,15 +8,20 @@ from django.db import IntegrityError
 
 
 def get_password(length):
-    return ''.join((secrets.choice(string.ascii_letters) for i in range(length)))
+    return "".join((secrets.choice(string.ascii_letters) for i in range(length)))
 
 
 @pytest.mark.django_db()
 def test_create_user():
     User = get_user_model()
     password = get_password(8)
-    user = User.objects.create_user(email='normal@user.com', first_name="User", last_name="Userson", password=password)
-    assert user.email == 'normal@user.com'
+    user = User.objects.create_user(
+        email="normal@user.com",
+        first_name="User",
+        last_name="Userson",
+        password=password,
+    )
+    assert user.email == "normal@user.com"
     assert user.is_active
     assert not user.is_staff
     assert not user.is_superuser
@@ -28,19 +33,19 @@ def test_create_user():
         pass
     with pytest.raises(TypeError):
         User.objects.create_user()
-    with pytest.raises(ValueError, match='The given email must be set'):
-        User.objects.create_user(email='')
-    with pytest.raises(ValueError, match='The given email must be set'):
-        User.objects.create_user(email='', first_name="User", last_name="Userson", password=password)
+    with pytest.raises(ValueError, match="The given email must be set"):
+        User.objects.create_user(email="")
+    with pytest.raises(ValueError, match="The given email must be set"):
+        User.objects.create_user(email="", first_name="User", last_name="Userson", password=password)
 
 
 @pytest.mark.django_db()
 def test_create_superuser():
     User = get_user_model()
     password = get_password(8)
-    admin_user = User.objects.create_superuser('super@user.com', password, first_name='User', last_name='Userson')
-    assert admin_user.email == 'super@user.com'
-    assert admin_user.first_name == 'User'
+    admin_user = User.objects.create_superuser("super@user.com", password, first_name="User", last_name="Userson")
+    assert admin_user.email == "super@user.com"
+    assert admin_user.first_name == "User"
     assert admin_user.is_active
     assert admin_user.is_staff
     assert admin_user.is_superuser
@@ -51,8 +56,7 @@ def test_create_superuser():
     except AttributeError:
         pass
     with pytest.raises(IntegrityError):
-        User.objects.create_superuser(
-            email='super@user.com', password=password, is_superuser=False)
+        User.objects.create_superuser(email="super@user.com", password=password, is_superuser=False)
 
 
 @pytest.mark.django_db()
@@ -63,7 +67,7 @@ def test_user_full_name_with_middle_name():
     middle_name = "Userson"
     password = get_password(8)
     user = User.objects.create_user(
-        email='normal@user.com',
+        email="normal@user.com",
         first_name=first_name,
         last_name=last_name,
         middle_name=middle_name,
@@ -79,7 +83,7 @@ def test_user_full_name():
     last_name = "Useroff"
     password = get_password(8)
     user = User.objects.create_user(
-        email='normal@user.com',
+        email="normal@user.com",
         first_name=first_name,
         last_name=last_name,
         password=password,
@@ -94,7 +98,7 @@ def test_user_short_name():
     last_name = "Useroff"
     password = get_password(8)
     user = User.objects.create_user(
-        email='normal@user.com',
+        email="normal@user.com",
         first_name=first_name,
         last_name=last_name,
         password=password,
