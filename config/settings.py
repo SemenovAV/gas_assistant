@@ -26,7 +26,7 @@ DEBUG = os.environ.get("DEBUG")
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 else:
-    ALLOWED_HOSTS = [os.enverone.get("IP"), "localhost"]
+    ALLOWED_HOSTS = [os.environ.get("IP"), "localhost"]
 
 # Application definition
 
