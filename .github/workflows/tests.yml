@@ -52,4 +52,4 @@ jobs:
 
     - name: Test with pytest
       run: |
-        pipenv run coverage run --source='./src' -m pytest --suppress-no-test-exit-code
+        pipenv run coverage run --source='.' -m pytest --suppress-no-test-exit-code
