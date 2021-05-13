@@ -22,7 +22,7 @@ def test_create_user():
         password=password,
     )
     assert user.email == "normal@user.com"
-    assert user.is_active
+    assert not user.is_active
     assert not user.is_staff
     assert not user.is_superuser
     try:
