@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .managers import UserManager
+from phonenumber_field.modelfields import PhoneNumberField
 from django.utils.translation import gettext_lazy as _
 
 
@@ -16,7 +17,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(_("first name"), max_length=30)
     last_name = models.CharField(_("last name"), max_length=30)
     middle_name = models.CharField(_("middle name"), max_length=30, blank=True)
-    is_active = models.BooleanField(_("active"), default=True)
+    phone_number = PhoneNumberField(_('phone number'), blank=True)
+    is_active = models.BooleanField(_("active"), default=False)
     is_staff = models.BooleanField(_("staff"), default=False)
     avatars = models.ImageField(_("avatars/"), blank=True)
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
