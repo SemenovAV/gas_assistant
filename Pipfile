@@ -36,6 +36,8 @@ sqlparse = "==0.4.1"
 urllib3 = "==1.26.4"
 gunicorn = "*"
 pillow = "*"
+django-phonenumber-field = "*"
+phonenumbers = "*"
 
 [dev-packages]
 ipython = "*"
