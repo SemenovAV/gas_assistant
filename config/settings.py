@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "users.apps.UsersConfig",
+    "phonenumber_field",
+    "users",
+    "demo",
 ]
 
 MIDDLEWARE = [
@@ -105,6 +107,8 @@ else:
 
 AUTH_USER_MODEL = "users.User"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+PHONENUMBER_DEFAULT_REGION = "RU"
+
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
