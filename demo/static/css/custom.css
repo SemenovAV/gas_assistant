@@ -1,0 +1,9 @@
+.list-group-item:nth-child(even) {
+    background-color: #eee;
+}
+
+iframe {
+    display: block;
+    margin: 0 auto;
+    border: #eee 1px solid;
+}
