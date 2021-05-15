@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from django.contrib import admin
 from .models import Incident, OilField, Mining, Urgg, CountWells, Task, Employee
 
@@ -40,5 +41,13 @@ class TaskInlineAdmin(admin.TabularInline):
 
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
-    fields = ['id_employee', 'fio']
-    inlines = [TaskInlineAdmin]
+    ordering = ("email",)
+    list_display = ("id_employee", "email", "phone_number", "full_name")
+    search_fields = ("id_employee", "email", "full_name")
+    fieldsets = (
+        (None, {"fields": ("phone_number", "email")}),
+        (_("Personal info"), {"fields": ("first_name", "last_name", "middle_name")}),
+    )
+
+    def full_name(self, obj):
+        return obj.get_full_name

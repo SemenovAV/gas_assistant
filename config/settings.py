@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "phonenumber_field",
-    "users",
     "demo",
 ]
 
@@ -105,7 +104,6 @@ else:
         },
     }
 
-AUTH_USER_MODEL = "users.User"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 PHONENUMBER_DEFAULT_REGION = "RU"
 

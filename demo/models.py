@@ -1,15 +1,14 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.translation import gettext_lazy as _
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class OilField(models.Model):
     name = models.CharField(max_length=255, verbose_name=_('Name'))
-    asurg = models.IntegerField(validators=[MinValueValidator(0),
-                                            MaxValueValidator(100)],
+    asurg = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)],
                                 verbose_name=_('ASURG Equipment'))
-    gas_disposal = models.IntegerField(validators=[MinValueValidator(0),
-                                                   MaxValueValidator(100)],
+    gas_disposal = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)],
                                        verbose_name=_('Gas utilization'))
 
     class Meta:
@@ -34,15 +33,13 @@ class Incident(models.Model):
 
 
 class Mining(models.Model):
-    name_oilfield = models.ForeignKey(OilField, on_delete=models.CASCADE,
-                                      verbose_name=_('Oil field'),
+    name_oilfield = models.ForeignKey(OilField, on_delete=models.CASCADE, verbose_name=_('Oil field'),
                                       related_name='mining')
     mining_date = models.DateField(verbose_name=_('Date'))
-    mining_value = models.DecimalField(max_digits=10, decimal_places=3,
-                                       verbose_name=_('Production quantity'))
+    mining_value = models.DecimalField(max_digits=10, decimal_places=3, verbose_name=_('Production quantity'))
 
     class Meta:
-        verbose_name = _('Mining')
+        verbose_name = _('Minings')
         verbose_name_plural = _('Minings')
 
     def __str__(self):
@@ -74,16 +71,19 @@ class CountWells(models.Model):
 
 
 class Employee(models.Model):
-    id_employee = models.IntegerField(null=True, blank=True, unique=True,
-                                      verbose_name=_('Employee number'))
-    fio = models.CharField(max_length=255, verbose_name=_('Employees full NAME'))
+    id_employee = models.IntegerField(null=True, blank=True, unique=True, verbose_name=_('Employee number'))
+    email = models.EmailField(_("email address"), max_length=40, unique=True)
+    first_name = models.CharField(_("first name"), max_length=30)
+    last_name = models.CharField(_("last name"), max_length=30)
+    middle_name = models.CharField(_("middle name"), max_length=30, blank=True)
+    phone_number = PhoneNumberField(_('phone number'), unique=True)
 
     class Meta:
         verbose_name = _('Employee')
         verbose_name_plural = _('Employees')
 
     def __str__(self):
-        return self.fio
+        return f'{self.id_employee}'
 
 
 class Task(models.Model):
