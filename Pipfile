@@ -38,6 +38,7 @@ gunicorn = "*"
 pillow = "*"
 django-phonenumber-field = "*"
 phonenumbers = "*"
+whitenoise = "*"
 
 [dev-packages]
 ipython = "*"
