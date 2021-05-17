@@ -74,8 +74,14 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+import dj_database_url
+# to facilitate on dokku environment | by resgef
+if os.environ.get('DATABASE_URL', ''):
+    DATABASES = {
+        'default': dj_database_url.config()
+    }
 
-if os.environ.get("POSTGRES") and os.environ.get("GITHUB_WORKFLOW"):
+elif os.environ.get("POSTGRES") and os.environ.get("GITHUB_WORKFLOW"):
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
