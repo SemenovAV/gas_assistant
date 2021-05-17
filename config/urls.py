@@ -20,7 +20,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path("srv/admin/", admin.site.urls),
-    path('srv/', include('demo.urls', namespace='indormer')),
+    path('srv/', include('info.urls', namespace='info')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

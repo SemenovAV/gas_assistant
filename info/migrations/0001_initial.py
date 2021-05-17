@@ -86,7 +86,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('task_date', models.DateField(verbose_name='Task date')),
                 ('task_details', models.CharField(max_length=255, verbose_name='Task details')),
-                ('id_employee', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='tasks', to='demo.employee', to_field='id_employee', verbose_name='Employee')),
+                ('id_employee', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='tasks', to='info.employee', to_field='id_employee', verbose_name='Employee')),
             ],
             options={
                 'verbose_name': 'Task',
@@ -99,7 +99,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('mining_date', models.DateField(verbose_name='Date')),
                 ('mining_value', models.DecimalField(decimal_places=3, max_digits=10, verbose_name='Production quantity')),
-                ('name_oilfield', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='mining', to='demo.oilfield', verbose_name='Oil field')),
+                ('name_oilfield', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='mining', to='info.oilfield', verbose_name='Oil field')),
             ],
             options={
                 'verbose_name': 'Mining',

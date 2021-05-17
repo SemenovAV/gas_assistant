@@ -75,9 +75,6 @@ coverage.xml
 # Django stuff:
 cover/
 
-# Translations
-*.mo
-
 # Django stuff:
 
 # Flask stuff:
