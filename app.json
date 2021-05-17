@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dokku": {
-      "predeploy": "python3 manage.py migrate --noinput && django-admin compilemessages "
+      "predeploy": "python3 manage.py migrate --noinput"
     }
   }
 }
