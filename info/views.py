@@ -17,7 +17,7 @@ def convert_str_date(value):
 
 @require_http_methods(['GET'])
 def index_view(request):
-    return render(request, 'demo/home.html')
+    return render(request, 'info/home.html')
 
 
 @require_http_methods('POST')
