@@ -46,7 +46,7 @@ class EmployeeAdmin(admin.ModelAdmin):
     search_fields = ("id_employee", "email", "full_name")
     fieldsets = (
         (None, {"fields": ("phone_number", "email")}),
-        (_("Personal info"), {"fields": ("first_name", "last_name", "middle_name")}),
+        (_("Персональная информация"), {"fields": ("first_name", "last_name", "middle_name")}),
     )
 
     def full_name(self, obj):
