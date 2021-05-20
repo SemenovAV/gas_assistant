@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 import json
 from datetime import datetime
+from .webhook import fetch_data
 from .models import CountWells, Urgg, Employee, Task, Incident, OilField, Mining
 
 
@@ -27,17 +28,5 @@ def chat_message():
 
 @csrf_exempt
 def webhook(request):
-    # build a request object
-    req = json.loads(request.body)
-    # get intent name from json
-    intent = req.get('queryResult').get('intent')
-    print(req)
-    # get intent parameters
-    param = req.get('queryResult').get('parameters')
-
-    intent_name = intent['displayName']
-    [intent_name, param, CountWells, Urgg, Employee, Task, Incident, OilField, Mining, Q]
-
-    fulfillmentText = 'Ни чего не знаю! Я еще учусь!'
-
-    return JsonResponse(fulfillmentText, safe=False)
+    fetch_data(request)
+    return JsonResponse({}, safe=False)

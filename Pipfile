@@ -42,6 +42,7 @@ whitenoise = "*"
 commitizen = "*"
 dj-database-url = "*"
 psycopg2-binary = "*"
+chatbase = "*"
 
 [dev-packages]
 ipython = "*"
