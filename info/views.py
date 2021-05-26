@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from django.shortcuts import render
@@ -6,6 +8,7 @@ from django.db.models import Q
 import json
 from datetime import datetime
 from .models import CountWells, Urgg, Employee, Task, Incident, OilField, Mining
+from .tasks import chatbase_send
 
 
 def convert_str_date(value):
@@ -27,17 +30,6 @@ def chat_message():
 
 @csrf_exempt
 def webhook(request):
-    # build a request object
-    req = json.loads(request.body)
-    # get intent name from json
-    intent = req.get('queryResult').get('intent')
-    print(req)
-    # get intent parameters
-    param = req.get('queryResult').get('parameters')
-
-    intent_name = intent['displayName']
-    [intent_name, param, CountWells, Urgg, Employee, Task, Incident, OilField, Mining, Q]
-
-    fulfillmentText = 'Ни чего не знаю! Я еще учусь!'
-
-    return JsonResponse(fulfillmentText, safe=False)
+    data = json.loads(request.body)
+    chatbase_send.delay(data)
+    return JsonResponse({}, safe=False)

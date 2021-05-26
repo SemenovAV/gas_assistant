@@ -8,5 +8,5 @@ app_name = 'info'
 urlpatterns = [
     path('', index_view, name='index_view'),
     path('info/chat-message', chat_message, name='chat_message'),
-    path('info/webhook/', webhook, name='webhook'),
+    path('info/webhook', webhook, name='webhook'),
 ]
