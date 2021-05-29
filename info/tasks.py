@@ -31,8 +31,23 @@ def chatbase_send(data):
     agent_msg = msg.get_fulfillment_text()
     action = msg.get_action()
     not_handled = True if action == 'input.unknown' else False
-    messages = MessageSet(api_key=API_KEY, platform=platform, version=version, user_id=user_id)
-    messages.new_message(intent=intent, message=user_msg, session_id=session_id, msg_type='user', not_handled=not_handled)
-    messages.new_message(intent=intent, message=agent_msg, session_id=session_id, msg_type='agent')
-    req = messages.send()
-    print(req.json())
+    messages = MessageSet(
+        api_key=API_KEY,
+        platform=platform,
+        version=version,
+        user_id=user_id,
+    )
+    messages.new_message(
+        intent=intent,
+        message=user_msg,
+        session_id=session_id,
+        msg_type='user',
+        not_handled=not_handled,
+    )
+    messages.new_message(
+        intent=intent,
+        message=agent_msg,
+        session_id=session_id,
+        msg_type='agent',
+    )
+    messages.send()
