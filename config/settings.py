@@ -165,9 +165,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 REDIS_HOST = os.environ.get('REDIS_HOST', '127.0.0.1')
 REDIS_PORT = os.environ.get('REDIS_PORT', '6379')
-REDIS_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT
-if os.environ.get("REDIS_URL"):
-    REDIS_URL = os.environ.get("REDIS_URL")
+REDIS_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 # CELERY settings
 CELERY_BROKER_URL = REDIS_URL + '/0'
 CELERY_BROKER_TRANSPORT_OPTION = {'visibility_timeout': 3600}
