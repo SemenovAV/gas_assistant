@@ -145,7 +145,7 @@ class MessageSet(object):
                       intent=intent,
                       message=message,
                       session_id=session_id,
-                      not_handled=not_handled
+                      not_handled=not_handled,
                       )
 
         if msg_type == 'user':

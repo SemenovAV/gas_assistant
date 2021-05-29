@@ -1,13 +1,9 @@
-from pprint import pprint
-
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from django.shortcuts import render
 from django.http import JsonResponse
-from django.db.models import Q
 import json
 from datetime import datetime
-from .models import CountWells, Urgg, Employee, Task, Incident, OilField, Mining
 from .tasks import chatbase_send
 
 

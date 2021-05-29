@@ -1,4 +1,3 @@
-import json
 import warnings
 
 
@@ -215,21 +214,18 @@ class WebhookResponse:
         self.fulfilment_text = None
         self.fulfilment_data = None
 
-    def add_context(self, session_id, context_name, lifespan=0, params={}):
+    def add_context(self, session_id, context_name, lifespan=0, params=""):
         """
-        Adds/Changes a Dialogflow Context
-
+        Adds or Changes a Dialogflow Context
         :param session_id: The Session ID
         :type session_id: str
         :param context_name: The name of the Context to add/edit
         :type context_name: str
         :param lifespan: The  number of conversational turns for which the context remains active, defaults to 0
         :type lifespan: int, optional
-        :param params: The Dictionary of Data to store in the context, defaults to {}
-        :type params: dict, optional
         """
         self.context_list.append(
-            {"name": session_id + "/contexts/" + context_name, "lifespanCount": lifespan, "parameters": params})
+            {"name": session_id + "/contexts/" + context_name, "lifespanCount": lifespan, "parameters": params or {}})
         self.context_available = True
 
     def trigger_event(self, event, params, lang_code="ru-RU"):
@@ -291,16 +287,16 @@ class WebhookResponse:
             data = {
                 "card": {
                     "title": title,
-                    "subtitle": subtitle
-                }
+                    "subtitle": subtitle,
+                },
             }
         else:
             data = {
                 "card": {
                     "title": title,
                     "subtitle": subtitle,
-                    "imageUri": img_url
-                }
+                    "imageUri": img_url,
+                },
             }
         self.generic_messages.append(data)
         self.generic_card_index = len(self.generic_messages) - 1
@@ -321,13 +317,13 @@ class WebhookResponse:
             try:
                 self.generic_messages[self.generic_card_index]["card"]["buttons"].append({
                     "text": btn_title,
-                    "postback": btn_link
+                    "postback": btn_link,
                 })
             except KeyError:
                 self.generic_messages[self.generic_card_index]["card"]["buttons"] = []
                 self.generic_messages[self.generic_card_index]["card"]["buttons"].append({
                     "text": btn_title,
-                    "postback": btn_link
+                    "postback": btn_link,
                 })
 
     def generic_add_suggestions(self, suggestion_list, **kwargs):
@@ -343,8 +339,8 @@ class WebhookResponse:
         self.generic_messages.append({
             "quickReplies": {
                 "title": title,
-                "quickReplies": suggestion_list
-            }
+                "quickReplies": suggestion_list,
+            },
         })
 
     def generic_image(self, image_url, image_alt):
@@ -359,8 +355,8 @@ class WebhookResponse:
         self.generic_messages.append({
             "image": {
                 "imageUri": image_url,
-                "accessibility_text": image_alt
-            }
+                "accessibility_text": image_alt,
+            },
         })
 
     def google_assistant_response(self, speech, **kwargs):
@@ -384,14 +380,14 @@ class WebhookResponse:
             self.response_data.append({
                 "simpleResponse": {
                     "textToSpeech": tts,
-                    "displayText": display_text
-                }
+                    "displayText": display_text,
+                },
             })
         else:
             self.response_data.append({
                 "simpleResponse": {
-                    "textToSpeech": tts
-                }
+                    "textToSpeech": tts,
+                },
             })
 
     def google_assistant_card(self, title, **kwargs):
@@ -443,8 +439,8 @@ class WebhookResponse:
                 "basicCard": {
                     "title": card_title,
                     "subtitle": card_subtitle,
-                    "formattedText": card_text
-                }
+                    "formattedText": card_text,
+                },
             }
         else:
             card = {
@@ -455,15 +451,15 @@ class WebhookResponse:
                     "buttons": [{
                         "title": card_button,
                         "openUrlAction": {
-                            "url": card_url
-                        }
-                    }]
-                }
+                            "url": card_url,
+                        },
+                    }],
+                },
             }
         if img_url != "":
             card["basicCard"]["image"] = {
                 "url": img_url,
-                "accessibilityText": image_alt
+                "accessibilityText": image_alt,
             }
         if image_display_options != "":
             card["basicCard"]["imageDisplayOptions"] = image_display_options
@@ -503,13 +499,13 @@ class WebhookResponse:
             self.response_data[self.g_carousel_index]["carouselBrowse"]["items"].append({
                 "title": title,
                 "openUrlAction": {
-                    "url": url
+                    "url": url,
                 }, "description": description,
                 "footer": footer,
                 "image": {
                     "url": image_url,
-                    "accessibilityText": image_alt
-                }
+                    "accessibilityText": image_alt,
+                },
             })
         except KeyError:
             raise AttributeError("google_assistant_new_carousel is not created")
@@ -550,13 +546,14 @@ class WebhookResponse:
         tab_subtitle = kwargs.get("subtitle", "")
         card = {
             "tableCard": {
-                "rows": [], "columnProperties": []
-            }
+                "rows": [],
+                "columnProperties": [],
+            },
         }
         if img_url != "":
             image = {
                 "url": img_url,
-                "accessibilityText": img_alt
+                "accessibilityText": img_alt,
             }
             card["tableCard"]["image"] = image
         if tab_title != "":
@@ -596,7 +593,7 @@ class WebhookResponse:
                 table_list.append({"text": i})
             self.response_data[self.g_table_index]["tableCard"]["rows"].append({
                 "cells": table_list,
-                "dividerAfter": add_divider
+                "dividerAfter": add_divider,
             })
         except KeyError:
             raise AttributeError("google_assistant_new_table is not created")
@@ -626,11 +623,11 @@ class WebhookResponse:
                     "description": description,
                     "icon": {
                         "url": img_url,
-                        "accessibilityText": img_alt
+                        "accessibilityText": img_alt,
                     },
-                    "name": display_name
-                }]
-            }
+                    "name": display_name,
+                }],
+            },
         })
 
     def google_assistant_ask_permission(self, speech, permission_list):
@@ -647,8 +644,8 @@ class WebhookResponse:
             "data": {
                 "@type": "type.googleapis.com/google.actions.v2.PermissionValueSpec",
                 "optContext": speech,
-                "permissions": permission_list
-            }
+                "permissions": permission_list,
+            },
         }
         self.g_permission_available = True
 
@@ -662,13 +659,10 @@ class WebhookResponse:
         :rtype: Dictionary
         """
         self.fulfilment_data = {}
-        try:
-            if not self.g_end_conversation:
-                expectres = True
-            else:
-                expectres = False
-        except:
+        if not self.g_end_conversation:
             expectres = True
+        else:
+            expectres = False
 
         # Contexts
         if self.context_available:
@@ -680,15 +674,15 @@ class WebhookResponse:
                 "followupEventInput": {
                     "name": self.trigger_event_name,
                     "parameters": self.trigger_event_parameters,
-                    "languageCode": self.trigger_lang_code
-                }
+                    "languageCode": self.trigger_lang_code,
+                },
             }
             return self.fulfilment_data
 
         # Generic Responses
         if self.fulfilment_text_available:
             self.fulfilment_data = {
-                "fulfillmentText": self.fulfilment_text
+                "fulfillmentText": self.fulfilment_text,
             }
         if self.generic_messages:
             self.fulfilment_data["fulfillmentMessages"] = self.generic_messages
@@ -698,15 +692,15 @@ class WebhookResponse:
             if list(self.response_data[0].keys())[0] != "simpleResponse":
                 warnings.warn("google_assistant_response() should have been called before adding a "
                               "Google Assistant Card,Carousel,Table etc. This is a limitation of "
-                              "Google Assistant where the first response must be a simple text"
+                              "Google Assistant where the first response must be a simple text",
                               )
             self.fulfilment_data["payload"] = {
                 "google": {
                     "expectUserResponse": expectres,
                     "richResponse": {
-                        "items": self.response_data
-                    }
-                }
+                        "items": self.response_data,
+                    },
+                },
             }
         if self.g_suggestions_list:
             try:
@@ -714,7 +708,7 @@ class WebhookResponse:
             except KeyError:
                 raise AttributeError(
                     "You are trying to insert suggestions into a Google Assistant Rich Response "
-                    "with no items. This will lead to an error in Actions on Google"
+                    "with no items. This will lead to an error in Actions on Google",
                 )
         if self.g_permission_available:
             if self.response_data:
@@ -723,7 +717,7 @@ class WebhookResponse:
                 self.fulfilment_data["payload"] = {
                     "google": {
                         "expectUserResponse": expectres,
-                        "systemIntent": self.permission_data
-                    }
+                        "systemIntent": self.permission_data,
+                    },
                 }
         return self.fulfilment_data

@@ -69,15 +69,15 @@ class AliceResponse(object):
             "version": alice_request.version,
             "session": alice_request.session,
             "response": {
-                "end_session": False
-            }
+                "end_session": False,
+            },
         }
 
     def dumps(self):
         return json.dumps(
             self._response_dict,
             ensure_ascii=False,
-            indent=2
+            indent=2,
         )
 
     def set_text(self, text):
