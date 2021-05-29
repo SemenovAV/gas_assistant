@@ -2,9 +2,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.db.models import Q
 import json
 from datetime import datetime
-from .tasks import chatbase_send
+from .webhook import fetch_data
+from .models import CountWells, Urgg, Employee, Task, Incident, OilField, Mining
 
 
 def convert_str_date(value):
@@ -26,6 +28,5 @@ def chat_message():
 
 @csrf_exempt
 def webhook(request):
-    data = json.loads(request.body)
-    chatbase_send.delay(data)
+    fetch_data(request)
     return JsonResponse({}, safe=False)
