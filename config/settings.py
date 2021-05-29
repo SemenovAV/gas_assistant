@@ -165,7 +165,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 if os.environ.get('REDIS_URL'):
     REDIS = dj_redis_url.config()
     REDIS_HOST = REDIS['HOST']
-    REDIS_PORT = REDIS['PORT']
+    REDIS_PORT = str(REDIS['PORT'])
 else:
     REDIS_HOST = os.environ.get('REDIS_HOST', '127.0.0.1')
     REDIS_PORT = os.environ.get('REDIS_PORT', '6379')
