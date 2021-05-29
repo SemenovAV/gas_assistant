@@ -45,6 +45,7 @@ psycopg2-binary = "*"
 celery = "*"
 redis = "*"
 chatbase = "*"
+dj-redis-url = "*"
 
 [dev-packages]
 ipython = "*"

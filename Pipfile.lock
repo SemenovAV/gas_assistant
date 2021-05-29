@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "cbadc6be799c2db68471622d4a3167b93d0ad81004a6b74f8f019c80b3c2d47c"
+            "sha256": "788c93d247ce4138ddf238e439fb20e808a2889e3f298f59f10da45a584673b3"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -142,6 +142,13 @@
             ],
             "index": "pypi",
             "version": "==0.5.0"
+        },
+        "dj-redis-url": {
+            "hashes": [
+                "sha256:eca9633d2c0a08c0d68ca50b631b25f1966842dd953f9a210bc659c06d75d6f2"
+            ],
+            "index": "pypi",
+            "version": "==0.1.4"
         },
         "django": {
             "hashes": [
@@ -796,10 +803,10 @@
         },
         "distlib": {
             "hashes": [
-                "sha256:8c09de2c67b3e7deef7184574fc060ab8a793e7adbb183d942c389c8b13c52fb",
-                "sha256:edf6116872c863e1aa9d5bb7cb5e05a022c519a4594dc703843343a9ddd9bff1"
+                "sha256:106fef6dc37dd8c0e2c0a60d3fca3e77460a48907f335fa28420463a6f799736",
+                "sha256:23e223426b28491b1ced97dc3bbe183027419dfc7982b4fa2f05d5f3ff10711c"
             ],
-            "version": "==0.3.1"
+            "version": "==0.3.2"
         },
         "eradicate": {
             "hashes": [
@@ -922,7 +929,7 @@
                 "sha256:1fe43e3e9acf3a7c0f6b88f5338cad37044d2f156c43cb6b080b5f9da8a76f06",
                 "sha256:20fa2a8ca2decac50116edb42e6af0a1253ef639ad79941249b840531889c65a"
             ],
-            "markers": "python_version >= '3.6' and python_version < '4.0'",
+            "markers": "python_version >= '3.6' and python_version < '4'",
             "version": "==1.3.2"
         },
         "flake8-polyfill": {

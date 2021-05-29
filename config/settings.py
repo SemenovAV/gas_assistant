@@ -13,6 +13,8 @@ import os
 import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import dj_redis_url
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -160,15 +162,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Celery
 # REDIS settings
-REDIS_HOST = os.environ.get('REDIS_HOST', '127.0.0.1')
-REDIS_PORT = os.environ.get('REDIS_PORT', '6379')
+if os.environ.get('REDIS_URL'):
+    REDIS = dj_redis_url.config()
+else:
+    REDIS_HOST = os.environ.get('REDIS_HOST', '127.0.0.1')
+    REDIS_PORT = os.environ.get('REDIS_PORT', '6379')
+    REDIS = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 
 # CELERY settings
-CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_BROKER_URL = REDIS
 CELERY_BROKER_TRANSPORT_OPTION = {'visibility_timeout': 3600}
-CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_RESULT_BACKEND = REDIS
 CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'c
 CELERY_RESULT_SERIALIZER = 'json'
 
 # Chatbase
