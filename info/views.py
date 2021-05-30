@@ -30,5 +30,6 @@ def chat_message():
 def webhook(request):
     if request.method == 'POST':
         data = json.loads(request.body)
+        print(data)#noqa
         chatbase_send.delay(data)
         return JsonResponse({}, safe=False)
