@@ -28,8 +28,7 @@ def chat_message():
 
 @csrf_exempt
 def webhook(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        print(data)#noqa
-        chatbase_send.delay(data)
+    data = json.loads(request.body)
+    print(data)#noqa
+    chatbase_send.delay(data)
     return JsonResponse({}, safe=False)
