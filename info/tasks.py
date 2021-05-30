@@ -51,3 +51,4 @@ def chatbase_send(data):
         msg_type='agent',
     )
     messages.send()
+    print(messages) #noqa
