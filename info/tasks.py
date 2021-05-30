@@ -50,5 +50,5 @@ def chatbase_send(data):
         session_id=session_id,
         msg_type='agent',
     )
-    messages.send()
-    print(messages) #noqa
+    result = messages.send()
+    print(result.json()) #noqa
