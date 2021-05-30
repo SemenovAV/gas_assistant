@@ -32,4 +32,4 @@ def webhook(request):
         data = json.loads(request.body)
         print(data)#noqa
         chatbase_send.delay(data)
-        return JsonResponse({}, safe=False)
+    return JsonResponse({}, safe=False)
