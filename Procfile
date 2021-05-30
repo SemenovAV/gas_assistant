@@ -1,2 +1,2 @@
-web: gunicorn --workers=3 config.wsgi
+web: gunicorn config.wsgi
 worker: celery --app=config worker -l INFO
