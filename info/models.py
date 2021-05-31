@@ -35,18 +35,18 @@ class Well(models.Model):
         C = 2, _("Специальная")
         D = 3, _("Вспомогательная")
 
-    type = models.CharField(
+    well_type = models.CharField(
         choices=WellType.choices,
         max_length=15,
         default=WellType.A,
-        verbose_name=_("Тип скважины")
+        verbose_name=_("Тип скважины"),
     )
     ident_number = models.CharField(max_length=100, verbose_name="Идентификационный номер")
     oilfield = models.ForeignKey(
         OilField,
         on_delete=models.CASCADE,
         related_name='oilfield',
-        verbose_name=_("Месторождение")
+        verbose_name=_("Месторождение"),
     )
     asurg = models.BooleanField(default=False, verbose_name="Оснащение АСУРГ")
 
@@ -87,10 +87,10 @@ class Urgg(models.Model):
 class GasDisposal(models.Model):
     well = models.ForeignKey(Well, on_delete=models.CASCADE, verbose_name=_("Скважина"), related_name='gas_deposal')
     gas_disposal_date = models.DateField(
-        verbose_name=_("Дата")
+        verbose_name=_("Дата"),
     )
     gas_disposal_count = models.IntegerField(
-        verbose_name=_("Количество")
+        verbose_name=_("Количество"),
     )
 
     class Meta:

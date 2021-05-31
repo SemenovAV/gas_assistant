@@ -6,30 +6,25 @@ from .models import Incident, OilField, Well, Task, Employee, GasDisposal, Minin
 @admin.register(GasDisposal)
 class GasDisposalAdmin(admin.ModelAdmin):
     list_filter = ['gas_disposal_date']
-    list = ['gas_disposal_count', 'gas_disposal_date']
+    list_display = ['gas_disposal_count', 'gas_disposal_date']
 
 
 @admin.register(Mining)
 class MinningAdmin(admin.ModelAdmin):
     list_filter = ['mining_date']
-    list = ['mining_count', 'mining_date']
+    list_display = ['mining_count', 'mining_date']
 
 
 @admin.register(Urgg)
 class UrggAdmin(admin.ModelAdmin):
     list_filter = ['urgg_date']
-    list = ['urgg_count', 'urgg_date']
+    list_display = ['urgg_count', 'urgg_date']
 
 
 @admin.register(Incident)
 class IncidentAdmin(admin.ModelAdmin):
     list_filter = ['incident_date']
-    fields = ['incident_date', 'incident_count', 'incident_details']
-
-
-@admin.register(OilField)
-class OilFieldAdmin(admin.ModelAdmin):
-    fields = ['name']
+    list_display = ['incident_date', 'incident_count', 'incident_details']
 
 
 @admin.register(Task)
@@ -63,8 +58,18 @@ class MiningInline(admin.TabularInline):
 @admin.register(Well)
 class WellAdmin(admin.ModelAdmin):
     list_filter = ['oilfield']
-    fields = ['oilfield', 'ident_number']
+    fields = ['oilfield', 'ident_number', 'well_type']
     inlines = (GasDisposalInline, UrggInline, MiningInline)
+
+
+class WellInline(admin.TabularInline):
+    models = Well
+    extra = 1
+
+
+@admin.register(OilField)
+class OilFieldAdmin(admin.ModelAdmin):
+    fields = ['name']
 
 
 @admin.register(Employee)
