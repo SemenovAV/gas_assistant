@@ -63,7 +63,7 @@ class WellAdmin(admin.ModelAdmin):
 
 
 class WellInline(admin.TabularInline):
-    models = Well
+    model = Well
     extra = 1
 
 
