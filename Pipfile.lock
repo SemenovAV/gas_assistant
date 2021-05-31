@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "788c93d247ce4138ddf238e439fb20e808a2889e3f298f59f10da45a584673b3"
+            "sha256": "cbadc6be799c2db68471622d4a3167b93d0ad81004a6b74f8f019c80b3c2d47c"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -142,13 +142,6 @@
             ],
             "index": "pypi",
             "version": "==0.5.0"
-        },
-        "dj-redis-url": {
-            "hashes": [
-                "sha256:eca9633d2c0a08c0d68ca50b631b25f1966842dd953f9a210bc659c06d75d6f2"
-            ],
-            "index": "pypi",
-            "version": "==0.1.4"
         },
         "django": {
             "hashes": [
