@@ -77,12 +77,12 @@ class OilFieldAdmin(admin.ModelAdmin):
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
     ordering = ("email",)
-    list_display = ("id_employee", "email", "phone_number", "full_name")
-    search_fields = ("id_employee", "email", "full_name")
+    list_display = ("full_name","id_employee", "email", "phone_number")
+    search_fields = ("full_name", "id_employee", "email")
     fieldsets = (
         (None, {"fields": ("phone_number", "email")}),
         (_("Персональная информация"), {"fields": ("first_name", "last_name", "middle_name")}),
     )
 
     def full_name(self, obj):
-        return obj.get_full_name
+        return obj.get_full_name()

@@ -178,8 +178,11 @@ class Employee(models.Model):
         verbose_name = _('Сотрудник')
         verbose_name_plural = _('Сотрудники')
 
+    def get_full_name(self):
+        return f'{self.first_name}{" " + self.middle_name} {self.last_name}'
+
     def __str__(self):
-        return f'{self.id_employee}'
+        return self.get_full_name()
 
 
 class Task(models.Model):
