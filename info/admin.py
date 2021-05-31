@@ -63,14 +63,13 @@ class WellAdmin(admin.ModelAdmin):
 
 
 class WellInline(admin.TabularInline):
-    model = Well
+    models = Well
     extra = 1
 
 
 @admin.register(OilField)
 class OilFieldAdmin(admin.ModelAdmin):
     fields = ['name']
-    inlines = (WellInline,)
 
 
 @admin.register(Employee)
