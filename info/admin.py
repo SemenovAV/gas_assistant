@@ -70,6 +70,7 @@ class WellInline(admin.TabularInline):
 @admin.register(OilField)
 class OilFieldAdmin(admin.ModelAdmin):
     fields = ['name']
+    inlines = (WellInline,)
 
 
 @admin.register(Employee)
