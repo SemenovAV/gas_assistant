@@ -61,6 +61,7 @@ class WellAdmin(admin.ModelAdmin):
     fields = ['oilfield', 'ident_number', 'well_type']
     inlines = (GasDisposalInline, UrggInline, MiningInline)
 
+
 @admin.register(OilField)
 class OilFieldAdmin(admin.ModelAdmin):
     fields = ['name']

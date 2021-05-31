@@ -4,10 +4,15 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Incident(models.Model):
-    incident_date = models.DateField(verbose_name=_('Дата инцидента'))
-
-    incident_count = models.IntegerField(verbose_name=_('Количество'))
-    incident_details = models.TextField(verbose_name=_('Подробное описание'))
+    incident_date = models.DateField(
+        verbose_name=_('Дата инцидента'),
+    )
+    incident_count = models.IntegerField(
+        verbose_name=_('Количество'),
+    )
+    incident_details = models.TextField(
+        verbose_name=_('Подробное описание'),
+    )
 
     class Meta:
         verbose_name = _('Инцидент')
@@ -18,7 +23,10 @@ class Incident(models.Model):
 
 
 class OilField(models.Model):
-    name = models.CharField(max_length=255, verbose_name=_('Наименование'))
+    name = models.CharField(
+        max_length=255,
+        verbose_name=_('Наименование'),
+    )
 
     class Meta:
         verbose_name = _('Месторождение')
@@ -41,14 +49,20 @@ class Well(models.Model):
         default=WellType.A,
         verbose_name=_("Тип скважины"),
     )
-    ident_number = models.CharField(max_length=100, verbose_name="Идентификационный номер")
+    ident_number = models.CharField(
+        max_length=100,
+        verbose_name=_("Идентификационный номер"),
+    )
     oilfield = models.ForeignKey(
         OilField,
         on_delete=models.CASCADE,
         related_name='oilfield',
         verbose_name=_("Месторождение"),
     )
-    asurg = models.BooleanField(default=False, verbose_name="Оснащение АСУРГ")
+    asurg = models.BooleanField(
+        default=False,
+        verbose_name=_("Оснащение АСУРГ"),
+    )
 
     class Meta:
         verbose_name = _('Скважина')
@@ -59,9 +73,20 @@ class Well(models.Model):
 
 
 class Mining(models.Model):
-    well = models.ForeignKey(Well, on_delete=models.CASCADE, verbose_name=_("Скважина"), related_name='mining')
-    mining_date = models.DateField(verbose_name=_('Дата'))
-    mining_count = models.DecimalField(max_digits=10, decimal_places=3, verbose_name=_('Количество добычи'))
+    well = models.ForeignKey(
+        Well,
+        on_delete=models.CASCADE,
+        verbose_name=_("Скважина"),
+        related_name='mining',
+    )
+    mining_date = models.DateField(
+        verbose_name=_('Дата'),
+    )
+    mining_count = models.DecimalField(
+        max_digits=10,
+        decimal_places=3,
+        verbose_name=_('Количество'),
+    )
 
     class Meta:
         verbose_name = _('Добыча')
@@ -72,9 +97,20 @@ class Mining(models.Model):
 
 
 class Urgg(models.Model):
-    well = models.ForeignKey(Well, on_delete=models.CASCADE, verbose_name=_("Скважина"), related_name='urgg')
-    urgg_date = models.DateField()
-    urgg_count = models.IntegerField()
+    well = models.ForeignKey(
+        Well,
+        on_delete=models.CASCADE,
+        verbose_name=_("Скважина"),
+        related_name='urgg',
+    )
+    urgg_date = models.DateField(
+        verbose_name=_('Дата'),
+    )
+    urgg_count = models.DecimalField(
+        max_digits=10,
+        decimal_places=3,
+        verbose_name=_('Количество'),
+    )
 
     class Meta:
         verbose_name = _('Показатель УРГГ')
@@ -85,11 +121,18 @@ class Urgg(models.Model):
 
 
 class GasDisposal(models.Model):
-    well = models.ForeignKey(Well, on_delete=models.CASCADE, verbose_name=_("Скважина"), related_name='gas_deposal')
+    well = models.ForeignKey(
+        Well,
+        on_delete=models.CASCADE,
+        verbose_name=_("Скважина"),
+        related_name='gas_deposal',
+    )
     gas_disposal_date = models.DateField(
         verbose_name=_("Дата"),
     )
-    gas_disposal_count = models.IntegerField(
+    gas_disposal_count = models.DecimalField(
+        max_digits=10,
+        decimal_places=3,
         verbose_name=_("Количество"),
     )
 
@@ -102,12 +145,34 @@ class GasDisposal(models.Model):
 
 
 class Employee(models.Model):
-    id_employee = models.IntegerField(null=True, blank=True, unique=True, verbose_name=_('Номер сотрудника'))
-    email = models.EmailField(_("Электронная почта"), max_length=40, unique=True)
-    first_name = models.CharField(_("Имя"), max_length=30)
-    last_name = models.CharField(_("Фамилия"), max_length=30)
-    middle_name = models.CharField(_("Отчество"), max_length=30, blank=True)
-    phone_number = PhoneNumberField(_('Номер телефона'), unique=True)
+    id_employee = models.IntegerField(
+        null=True,
+        blank=True,
+        unique=True,
+        verbose_name=_('Номер сотрудника'),
+    )
+    email = models.EmailField(
+        _("Электронная почта"),
+        max_length=40,
+        unique=True,
+    )
+    first_name = models.CharField(
+        _("Имя"),
+        max_length=30,
+    )
+    last_name = models.CharField(
+        _("Фамилия"),
+        max_length=30,
+    )
+    middle_name = models.CharField(
+        _("Отчество"),
+        max_length=30,
+        blank=True,
+    )
+    phone_number = PhoneNumberField(
+        _('Номер телефона'),
+        unique=True,
+    )
 
     class Meta:
         verbose_name = _('Сотрудник')
@@ -118,12 +183,21 @@ class Employee(models.Model):
 
 
 class Task(models.Model):
-    task_date = models.DateField(verbose_name=_('Дата задачи'))
-    id_employee = models.ForeignKey(Employee, on_delete=models.SET_NULL,
-                                    null=True, to_field='id_employee',
-                                    verbose_name=_('Сотрудник'),
-                                    related_name='tasks')
-    task_details = models.CharField(max_length=255, verbose_name=_('Подробное описание'))
+    task_date = models.DateField(
+        verbose_name=_('Дата задачи'),
+    )
+    id_employee = models.ForeignKey(
+        Employee,
+        on_delete=models.SET_NULL,
+        null=True,
+        to_field='id_employee',
+        verbose_name=_('Сотрудник'),
+        related_name='tasks',
+    )
+    task_details = models.CharField(
+        max_length=255,
+        verbose_name=_('Подробное описание'),
+    )
 
     class Meta:
         verbose_name = _('Задача')
