@@ -34,37 +34,44 @@ class TaskAdmin(admin.ModelAdmin):
 
 class TaskInlineAdmin(admin.TabularInline):
     model = Task
-    extra = 1
+    extra = 0
 
 
 class GasDisposalInline(admin.TabularInline):
     model = GasDisposal
     list_filter = ['gas_disposal_date']
-    extra = 1
+    extra = 0
 
 
 class UrggInline(admin.TabularInline):
     model = Urgg
     list_filter = ['urgg_date']
-    extra = 1
+    extra = 0
 
 
 class MiningInline(admin.TabularInline):
     model = Mining
     list_filter = ['mining_date']
-    extra = 1
+    extra = 0
 
 
 @admin.register(Well)
 class WellAdmin(admin.ModelAdmin):
+    search_fields = ['ident_number']
     list_filter = ['oilfield']
     fields = ['oilfield', 'ident_number', 'well_type']
     inlines = (GasDisposalInline, UrggInline, MiningInline)
 
 
+class WellInline(admin.TabularInline):
+    model = Well
+    extra = 0
+
+
 @admin.register(OilField)
 class OilFieldAdmin(admin.ModelAdmin):
     fields = ['name']
+    inlines = (WellInline,)
 
 
 @admin.register(Employee)
