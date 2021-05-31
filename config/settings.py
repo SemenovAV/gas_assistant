@@ -29,7 +29,7 @@ DEBUG = os.environ.get("DEBUG")
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 else:
-    ALLOWED_HOSTS = [os.environ.get("IP"), "localhost"]
+    ALLOWED_HOSTS = [os.environ.get("IP"), "127.0.0.1"]
 
 # Application definition
 
@@ -68,6 +68,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+
             ],
         },
     },
