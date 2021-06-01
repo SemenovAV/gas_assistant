@@ -77,7 +77,7 @@ class OilFieldAdmin(admin.ModelAdmin):
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
     ordering = ("email",)
-    list_display = ("full_name","id_employee", "email", "phone_number")
+    list_display = ("full_name", "id_employee", "email", "phone_number")
     search_fields = ("full_name", "id_employee", "email")
     fieldsets = (
         (None, {"fields": ("phone_number", "email")}),
