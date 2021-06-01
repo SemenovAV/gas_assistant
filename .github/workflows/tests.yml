@@ -56,8 +56,6 @@ jobs:
         
   bump-version:
     needs: [ build ]
-    env:
-      branch: 'main'
     if: "!startsWith(github.event.head_commit.message, 'bump:')"
     runs-on: ubuntu-latest
     name: "Bump version and create changelog with commitizen"
@@ -71,4 +69,5 @@ jobs:
         uses: commitizen-tools/commitizen-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: 'main'
 
