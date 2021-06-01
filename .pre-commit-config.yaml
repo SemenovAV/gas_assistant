@@ -9,11 +9,12 @@ repos:
   rev: v2.17.6
   hooks:
     - id: commitizen
-      stages: [commit]
+      stages: [commit-msg]
 - repo: https://gitlab.com/pycqa/flake8
   rev: 3.9.2  # pick a git hash / tag to point to
   hooks:
     - id: flake8
+      stages: [commit]
       name: flake8
       entry: flake8
       language: system
