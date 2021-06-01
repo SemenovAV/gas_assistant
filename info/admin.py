@@ -80,7 +80,7 @@ class EmployeeAdmin(admin.ModelAdmin):
     list_display = ("full_name", "id_employee", "email", "phone_number")
     search_fields = ("full_name", "id_employee", "email")
     fieldsets = (
-        (None, {"fields": ("phone_number", "email")}),
+        (None, {"fields": ("id_employee", "phone_number", "email")}),
         (_("Персональная информация"), {"fields": ("first_name", "last_name", "middle_name")}),
     )
 
