@@ -60,7 +60,7 @@ class Well(models.Model):
         choices=WellType.choices,
         max_length=15,
         default=WellType.A,
-        verbose_name=_("Тип скважины"),
+        verbose_name=_("Тип скважины")
     )
 
     ident_number = models.CharField(
