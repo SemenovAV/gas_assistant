@@ -7,5 +7,5 @@ jobs:
   stop:
     runs-on: ubuntu-latest
     steps:
-      - name: Stop commit
+      - name: Stop push to main
         run: exit 1
