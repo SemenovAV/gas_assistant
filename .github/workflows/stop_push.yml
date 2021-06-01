@@ -1,0 +1,11 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+jobs:
+  stop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Stop push to main
+        run: exit 1
