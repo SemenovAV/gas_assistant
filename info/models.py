@@ -43,6 +43,19 @@ class Well(models.Model):
         C = 2, _("Специальная")
         D = 3, _("Вспомогательная")
 
+    class WellStatus(models.TextChoices):
+        A = 0, _("Бурение")
+        B = 1, _("Освоение")
+        C = 2, _("Бездействие")
+        D = 3, _("Простой")
+
+    well_status = models.CharField(
+        choices=WellStatus.choices,
+        max_length=15,
+        default=WellStatus.C,
+        verbose_name=_("Статус скважины"),
+    )
+
     well_type = models.CharField(
         choices=WellType.choices,
         max_length=15,
