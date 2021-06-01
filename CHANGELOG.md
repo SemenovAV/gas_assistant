@@ -1,3 +1,10 @@
+## v1.0.0 (2021-06-01)
+
+### Fix
+
+- version tag format
+- **version-tag-format**: _
+
 ## v0.1.0 (2021-06-01)
 
 ### Fix
