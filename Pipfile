@@ -5,7 +5,7 @@ name = "pypi"
 
 [scripts]
 manage = "python manage.py"
-init = "pre-commit install --hook-type commit-msg"
+init = "pre-commit install"
 lint = "pre-commit run -a"
 tests = "coverage run -m pytest --suppress-no-test-exit-code"
 serve = "python manage.py runserver"
