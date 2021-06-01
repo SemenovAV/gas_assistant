@@ -62,10 +62,12 @@ class Well(models.Model):
         default=WellType.A,
         verbose_name=_("Тип скважины"),
     )
+
     ident_number = models.CharField(
         max_length=100,
         verbose_name=_("Идентификационный номер"),
     )
+
     oilfield = models.ForeignKey(
         OilField,
         on_delete=models.CASCADE,
