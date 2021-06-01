@@ -60,12 +60,12 @@ class Well(models.Model):
         choices=WellType.choices,
         max_length=15,
         default=WellType.A,
-        verbose_name=_("Тип скважины")
+        verbose_name=_("Тип скважины"),
     )
 
     ident_number = models.CharField(
         max_length=100,
-        verbose_name=_("Идентификационный номер")
+        verbose_name=_("Идентификационный номер"),
     )
 
     oilfield = models.ForeignKey(
