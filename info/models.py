@@ -65,7 +65,7 @@ class Well(models.Model):
 
     ident_number = models.CharField(
         max_length=100,
-        verbose_name=_("Идентификационный номер"),
+        verbose_name=_("Идентификационный номер")
     )
 
     oilfield = models.ForeignKey(
