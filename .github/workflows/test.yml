@@ -7,7 +7,7 @@
       steps:
         - name: print
           run:
-            echo ${{ secrets.GIT_REMOTE_URL }}
+            git remote -v
         - name: Dokku
           uses: dokku/github-action@v1.0.1
           with:
