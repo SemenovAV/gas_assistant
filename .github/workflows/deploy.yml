@@ -73,8 +73,13 @@ jobs:
     needs: [ build, bump-version ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: ./.github/deploy
+      - name: Dokku
+        uses: dokku/github-action@v1.0.1
+        with:
+          git_remote_url: ${{ secrets.GIT_REMOTE_URL }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh_host_key: ${{ secrets.SSH_HOST_KEY }}
+
 
 
           
