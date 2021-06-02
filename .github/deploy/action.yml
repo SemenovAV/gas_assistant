@@ -6,6 +6,7 @@ on:
     deploy:
       runs-on: ubuntu-latest
       steps:
+        - uses: actions/checkout@v2
         - name: Dokku
           uses: dokku/github-action@v1.0.1
           with:
