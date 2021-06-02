@@ -8,6 +8,7 @@
         - name: print
           run: |
             cd ..
+            cd gas_assistant
             ls -a
         - name: Dokku
           uses: dokku/github-action@v1.0.1
