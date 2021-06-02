@@ -73,6 +73,9 @@ jobs:
     needs: [ build, bump-version ]
     runs-on: ubuntu-latest
     steps:
+      - name: print
+        run:
+          echo ${{ secrets.GIT_REMOTE_URL }}
       - name: Dokku
         uses: dokku/github-action@v1.0.1
         env:
@@ -82,9 +85,6 @@ jobs:
           git_remote_url: ${{ secrets.GIT_REMOTE_URL }}
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           ssh_host_key: ${{ secrets.SSH_HOST_KEY }}
-      - name: print
-        run:
-          echo ${{ secrets.GIT_REMOTE_URL }}
 
 
 
