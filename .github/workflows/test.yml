@@ -3,14 +3,13 @@
       branches: [ dev ]
   jobs:
     deploy:
+      needs: [ build, bump-version ]
       runs-on: ubuntu-latest
       steps:
-        - name: print
-          run:
-            git remote -v
         - name: Dokku
           uses: dokku/github-action@v1.0.1
           with:
-            git_remote_url: 'ssh://dokku@82.148.17.80:3210/ga/'
+            branch: 'main'
+            git_remote_url: ${{ secrets.GIT_REMOTE_URL }}
             ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
             ssh_host_key: ${{ secrets.SSH_HOST_KEY }}
