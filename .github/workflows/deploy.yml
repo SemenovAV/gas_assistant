@@ -79,9 +79,8 @@ jobs:
       - name: Dokku
         uses: dokku/github-action@v1.0.1
         env:
-          GIT_SSH_COMMAND: 'ssh -vvv'
+          GIT_SSH_COMMAND: 'ssh -p 3210'
         with:
-          git_push_flags: '-vvv'
           git_remote_url: ${{ secrets.GIT_REMOTE_URL }}
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           ssh_host_key: ${{ secrets.SSH_HOST_KEY }}
