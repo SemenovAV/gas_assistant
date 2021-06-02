@@ -78,6 +78,8 @@ jobs:
         env:
           GIT_SSH_COMMAND: 'ssh -vvv'
         with:
+          run:
+            echo ${{ secrets.GIT_REMOTE_URL }}
           git_push_flags: '-vvv'
           git_remote_url: ${{ secrets.GIT_REMOTE_URL }}
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
