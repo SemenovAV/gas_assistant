@@ -5,12 +5,11 @@
     deploy:
       runs-on: ubuntu-latest
       steps:
+        - name: print
+          run: echo ${{ ls -a }}
         - name: Dokku
-          run:
-            cd ..
           uses: dokku/github-action@v1.0.1
           with:
-            branch: 'main'
             git_remote_url: ${{ secrets.GIT_REMOTE_URL }}
             ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
             ssh_host_key: ${{ secrets.SSH_HOST_KEY }}
