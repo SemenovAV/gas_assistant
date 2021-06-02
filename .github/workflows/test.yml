@@ -6,7 +6,9 @@
       runs-on: ubuntu-latest
       steps:
         - name: print
-          run:  ls -a
+          run: |
+            cd ..
+            ls -a
         - name: Dokku
           uses: dokku/github-action@v1.0.1
           with:
