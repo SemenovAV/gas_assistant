@@ -3,7 +3,6 @@
       branches: [ dev ]
   jobs:
     deploy:
-      needs: [ build, bump-version ]
       runs-on: ubuntu-latest
       steps:
         - name: Dokku
