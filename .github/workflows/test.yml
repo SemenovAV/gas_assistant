@@ -6,6 +6,8 @@
       runs-on: ubuntu-latest
       steps:
         - name: Dokku
+          run:
+            cd ..
           uses: dokku/github-action@v1.0.1
           with:
             branch: 'main'
