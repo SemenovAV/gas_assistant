@@ -1,6 +1,5 @@
 from config.celery import app
 from .tools.chatbase import MessageSet
-from .tools.dialogflow_webhook import WebhookHandler
 from .tools.telegram import TelegramHandler
 from .tools.alice import AliceRequest, is_alice
 from django.conf import settings
@@ -9,8 +8,7 @@ API_KEY = settings.CHATBASE_API_KEY
 
 
 @app.task
-def chatbase_send(data):
-    msg = WebhookHandler(data)
+def chatbase_send(msg):
     payload = msg.get_payload()
     user_id = ""
     version = "0.1"
@@ -51,3 +49,8 @@ def chatbase_send(data):
         msg_type='agent',
     )
     messages.send()
+
+
+@app.task(bind=True)
+def msg_handler(msg):
+    print(msg.data)  # flack8: noqa
