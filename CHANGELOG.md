@@ -1,3 +1,9 @@
+## v1.1.0 (2021-06-03)
+
+### Feat
+
+- add dialogflow message handler
+
 ## v1.0.4 (2021-06-02)
 
 ### Fix
