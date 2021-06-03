@@ -6,7 +6,8 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from datetime import datetime
 
-from .tasks import chatbase_send
+from .tasks import chatbase_send, msg_handler
+from .tools.dialogflow_webhook import WebhookHandler
 
 
 def convert_str_date(value):
@@ -29,6 +30,7 @@ def chat_message():
 @csrf_exempt
 @require_http_methods('POST')
 def webhook(request):
-    data = json.loads(request.body)
-    chatbase_send.delay(data)
+    msg = WebhookHandler(json.loads(request.body))
+    chatbase_send.delay(msg)
+    msg_handler.delay(msg)
     return JsonResponse({}, safe=False)
