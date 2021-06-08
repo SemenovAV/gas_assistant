@@ -1,0 +1,55 @@
+name: Test
+
+on:
+  push:
+    branches: [ dev ]
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: secret.SECRET_KEY
+
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: github_actions
+        ports:
+          - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8.6
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9.5
+    - name: install pipenv
+      run: |
+        sudo apt-get install libpq-dev -y
+        python -m pip install --upgrade pip
+        pip install pipenv
+
+    - name: Install dependencies
+      run: |
+        pipenv install --skip-lock --dev
+        pipenv lock --pre
+
+        pipenv run pre-commit install --hook-type commit-msg
+
+    - name: migrate
+      run: pipenv run python manage.py migrate
+
+  test:
+    needs: [ install ]
+    runs-on: ubuntu-latest
+    - uses: actions/checkout@v2
+    - name: lint
+      run: pipenv run pre-commit run flake8 -a
+
+    - name: Test with pytest
+      run: |
+        pipenv run coverage run --source='.' -m pytest --suppress-no-test-exit-code
