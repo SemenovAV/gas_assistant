@@ -46,6 +46,7 @@ jobs:
   test:
     needs: [ install ]
     runs-on: ubuntu-latest
+    steps:
     - uses: actions/checkout@v2
     - name: lint
       run: pipenv run pre-commit run flake8 -a
