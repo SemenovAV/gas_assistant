@@ -1,3 +1,12 @@
+## v1.1.2 (2021-06-18)
+
+### Fix
+
+- ci
+- update
+- **models**: relation name. Add model methods
+- **db**: fix related name
+
 ## v1.1.1 (2021-06-05)
 
 ### Fix
