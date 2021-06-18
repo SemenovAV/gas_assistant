@@ -1,4 +1,7 @@
+import datetime
+
 from django.db import models
+from django.db.models import Sum, Q
 from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -34,6 +37,27 @@ class OilField(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_wells(self):
+        return OilField.objects.prefetch_related('wells').get(name=self.name).wells
+
+    def get_start_mining_date(self):
+        return self.get_wells().order_by(
+            'mining__mining_date').values_list(
+            'mining__mining_date',
+            flat=True,
+        )[0]
+
+    def get_mining_for_date_period(self, start_date=None, end_date=None):
+        if not start_date:
+            start_date = self.get_start_mining_date()
+        if not end_date:
+            end_date = datetime.date.today()
+        return self.get_wells().filter(
+           Q(mining__mining_date__gte=start_date) & Q(mining__mining_date__lte=end_date),
+        ).aggregate(
+            Sum('mining__mining_count'),
+        )['mining__mining_count__sum']
 
 
 class Well(models.Model):
@@ -71,7 +95,7 @@ class Well(models.Model):
     oilfield = models.ForeignKey(
         OilField,
         on_delete=models.CASCADE,
-        related_name='oilfield',
+        related_name='wells',
         verbose_name=_("Месторождение"),
     )
     asurg = models.BooleanField(
@@ -94,9 +118,7 @@ class Mining(models.Model):
         verbose_name=_("Скважина"),
         related_name='mining',
     )
-    mining_date = models.DateField(
-        verbose_name=_('Дата'),
-    )
+    mining_date = models.DateField(verbose_name=_('Дата'))
     mining_count = models.DecimalField(
         max_digits=10,
         decimal_places=3,
