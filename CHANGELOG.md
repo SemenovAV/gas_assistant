@@ -1,3 +1,27 @@
+## v1.1.1 (2021-06-05)
+
+### Fix
+
+- 500 server error
+
+## v1.1.0 (2021-06-03)
+
+### Feat
+
+- add dialogflow message handler
+
+## v1.0.4 (2021-06-02)
+
+### Fix
+
+- fix
+
+## v1.0.3 (2021-06-02)
+
+### Fix
+
+- action
+
 ## v1.0.2 (2021-06-02)
 
 ### Fix
