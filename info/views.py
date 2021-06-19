@@ -17,7 +17,7 @@ def convert_str_date(value):
 
 
 @require_http_methods(['GET'])
-def index_view():
+def index_view(request): # noqa
     return redirect('https://console.dialogflow.com/api-client/demo/embedded/e150236a-3743-4bc5-9987-e85cbc58d00e')
 
 
