@@ -2,7 +2,7 @@ import json
 
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
-from django.shortcuts import render
+from django.shortcuts import redirect
 from django.http import JsonResponse
 from datetime import datetime
 
@@ -17,8 +17,8 @@ def convert_str_date(value):
 
 
 @require_http_methods(['GET'])
-def index_view(request):
-    return render(request, 'info/home.html')
+def index_view():
+    return redirect('https://console.dialogflow.com/api-client/demo/embedded/e150236a-3743-4bc5-9987-e85cbc58d00e')
 
 
 @require_http_methods('POST')
