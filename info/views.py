@@ -6,7 +6,8 @@ from django.shortcuts import redirect
 from django.http import JsonResponse
 from datetime import datetime
 
-from .tasks import chatbase_send, msg_handler
+from .tasks import chatbase_send
+from .tools.services import messages_handler
 
 
 def convert_str_date(value):
@@ -21,15 +22,11 @@ def index_view(request): # noqa
     return redirect('https://console.dialogflow.com/api-client/demo/embedded/e150236a-3743-4bc5-9987-e85cbc58d00e')
 
 
-@require_http_methods('POST')
-def chat_message():
-    pass
-
-
 @csrf_exempt
 @require_http_methods('POST')
 def webhook(request):
     data = json.loads(request.body)
     chatbase_send.delay(data)
-    msg_handler.delay(data)
-    return JsonResponse({}, safe=False)
+    response = messages_handler(request)
+    print(request)
+    return JsonResponse(response, safe=False)

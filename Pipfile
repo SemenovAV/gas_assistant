@@ -45,6 +45,7 @@ psycopg2-binary = "*"
 celery = "*"
 redis = "*"
 chatbase = "*"
+pydantic = "*"
 
 [dev-packages]
 ipython = "*"
