@@ -51,9 +51,3 @@ def chatbase_send(data):
         msg_type='agent',
     )
     messages.send()
-
-
-@app.task
-def msg_handler(data):
-    msg = WebhookHandler(data)
-    print(msg.data)  # flack8: noqa
